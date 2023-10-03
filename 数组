@@ -51,3 +51,26 @@ int main() {
     int len = solution.removeElement(res, 7);
     std::cout << len;
 }
+
+//长度最小的子数组
+class Solution {
+public:
+    int minSubArrayLen(int target, std::vector<int>& nums) {
+        int res = INT32_MAX;
+        int i = 0, sum = 0;
+        for (int j = 0; j < nums.size(); j++) {
+            sum += nums[j];
+            while (sum >= target) {         
+                res = res < (j - i + 1) ? res : (j - i + 1);
+                sum -= nums[i++];
+            }
+        }
+        return res == INT32_MAX ? 0 : res;
+    }
+};
+
+int main() {
+    std::vector<int> res = { 2,3,1,2,4,3 };
+    Solution solution = Solution();
+    std::cout << solution.minSubArrayLen(7, res);
+}
