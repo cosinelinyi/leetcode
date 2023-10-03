@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+
+class Solution {
+public:
+    int removeElement(std::vector<int>& nums, int val) {
+        int len = nums.size();
+        for (int i = 0; i < len; i++) {
+            if (nums[i] == val) {
+                nums[i] = nums[len - 1];
+                len--;
+                i--;
+            }
+        }
+        return len;
+    }
+};
+
+
+int main() {
+    std::vector<int> res = { 1,3,5,7,9,11,13,7 };
+    Solution solution = Solution();
+    int len = solution.removeElement(res, 7);
+    std::cout << len;
+}
