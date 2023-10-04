@@ -26,3 +26,18 @@ public:
         return pre_head->next;
     }
 };
+
+//翻转链表
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre = NULL, * cur = head, * temp = NULL;
+        while (cur != NULL) {
+            temp = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    }
+};
