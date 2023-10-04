@@ -41,3 +41,23 @@ public:
         return pre;
     }
 };
+
+//两两交换链表中的节点
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode* pre_head = new ListNode(0, head);
+        ListNode* cur = pre_head;
+        while (cur->next != NULL && cur->next->next != NULL) {
+            ListNode* temp_f = cur->next;
+            ListNode* temp_s = cur->next->next->next;
+
+            cur->next = cur->next->next;
+            cur->next->next = temp_f;
+            cur->next->next->next = temp_s;
+
+            cur = cur->next->next;
+        }
+        return pre_head->next;
+    }
+};
