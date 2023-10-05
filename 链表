@@ -61,3 +61,21 @@ public:
         return pre_head->next;
     }
 };
+
+//删除链表的倒数第N个节点
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* pre_head = new ListNode(0, head);
+        ListNode* fast = pre_head, * slow = pre_head;
+        for (int i = 1; i <= n; i++) {
+            slow = slow->next;
+        }
+        while (slow->next != NULL) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        fast->next = fast->next->next;
+        return pre_head->next;
+    }
+};
