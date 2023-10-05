@@ -115,3 +115,27 @@ public:
         return headA;
     }
 };
+
+//环形链表II
+class Solution {
+public:
+    ListNode* detectCycle(ListNode* head) {
+        ListNode* fast = head, * slow = head;
+        while (fast != NULL && fast->next != NULL) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (fast == slow) {
+                break;
+            }
+        }
+        if (fast == NULL || fast->next == NULL) {
+            return NULL;
+        }
+        ListNode* cur = head;
+        while (cur != slow) {
+            cur = cur->next;
+            slow = slow->next;
+        }
+        return cur;
+    }
+};
